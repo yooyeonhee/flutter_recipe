@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:recipe_flutter/core/presentation/components/big_button.dart';
+import 'package:recipe_flutter/core/presentation/components/input_field.dart';
 import 'package:recipe_flutter/core/presentation/components/medium_button.dart';
 import 'package:recipe_flutter/core/presentation/components/small_button.dart';
 import 'package:recipe_flutter/ui/text_styles.dart';
@@ -72,6 +73,7 @@ class MyHomePage extends StatelessWidget {
               print('Small Button');
             },
           ),
+          const InputField(label: 'Label', placeholder: 'Placeholder'),
         ],
       ),
     );
