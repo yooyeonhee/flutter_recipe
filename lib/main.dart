@@ -1,7 +1,9 @@
 import 'package:flutter/material.dart';
 import 'package:recipe_flutter/core/presentation/components/big_button.dart';
+import 'package:recipe_flutter/core/presentation/components/filter_button.dart';
 import 'package:recipe_flutter/core/presentation/components/input_field.dart';
 import 'package:recipe_flutter/core/presentation/components/medium_button.dart';
+import 'package:recipe_flutter/core/presentation/components/rating_button.dart';
 import 'package:recipe_flutter/core/presentation/components/small_button.dart';
 import 'package:recipe_flutter/ui/text_styles.dart';
 
@@ -74,6 +76,22 @@ class MyHomePage extends StatelessWidget {
             },
           ),
           const InputField(label: 'Label', placeholder: 'Placeholder'),
+          const FilterButton(
+            'asdfe',
+            isSelected: false,
+          ),
+          const FilterButton(
+            'asdfe',
+            isSelected: true,
+          ),
+          const RatingButton(
+            '5',
+            isSelected: false,
+          ),
+          const RatingButton(
+            '4',
+            isSelected: true,
+          )
         ],
       ),
     );
