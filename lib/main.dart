@@ -1,5 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:recipe_flutter/core/presentation/components/big_button.dart';
+import 'package:recipe_flutter/core/presentation/components/medium_button.dart';
+import 'package:recipe_flutter/core/presentation/components/small_button.dart';
 import 'package:recipe_flutter/ui/text_styles.dart';
 
 void main() {
@@ -56,6 +58,18 @@ class MyHomePage extends StatelessWidget {
             'Big Button',
             onPressed: () {
               print('Big Button');
+            },
+          ),
+          MediumButton(
+            'medium Button',
+            onPressed: () {
+              print('Medium Button');
+            },
+          ),
+          SmallButton(
+            'small Button',
+            onPressed: () {
+              print('Small Button');
             },
           ),
         ],
