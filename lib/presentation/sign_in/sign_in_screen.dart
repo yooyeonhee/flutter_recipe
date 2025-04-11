@@ -5,7 +5,14 @@ import 'package:recipe_flutter/ui/text_styles.dart';
 import 'package:recipe_flutter/ui/color_styles.dart';
 
 class SignInScreen extends StatelessWidget {
-  const SignInScreen({super.key});
+  final void Function() onTapRouteToSignUp;
+  final void Function() onTapSignIn;
+
+  const SignInScreen({
+    super.key,
+    required this.onTapRouteToSignUp,
+    required this.onTapSignIn,
+  });
 
   @override
   Widget build(BuildContext context) {
@@ -47,7 +54,7 @@ class SignInScreen extends StatelessWidget {
           const SizedBox(
             height: 25,
           ),
-          BigButton('Sign In', onPressed: () {}),
+          BigButton('Sign In', onPressed: onTapSignIn),
           const SizedBox(
             height: 20,
           ),
@@ -143,10 +150,13 @@ class SignInScreen extends StatelessWidget {
               const SizedBox(
                 width: 5,
               ),
-              Text(
-                'Sign up',
-                style: TextStyles.smallerTextBold
-                    .copyWith(color: ColorStyles.secondary100),
+              GestureDetector(
+                onTap: onTapRouteToSignUp,
+                child: Text(
+                  'Sign up',
+                  style: TextStyles.smallerTextBold
+                      .copyWith(color: ColorStyles.secondary100),
+                ),
               )
             ],
           ),

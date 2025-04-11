@@ -6,6 +6,7 @@ import 'package:recipe_flutter/domain/model/recipe.dart';
 import 'package:recipe_flutter/domain/use_case/get_saved_recipes_use_case.dart';
 import 'package:recipe_flutter/presentation/saved_recipes/saved_recipes_screen.dart';
 import 'package:recipe_flutter/presentation/sign_in/sign_in_screen.dart';
+import 'package:recipe_flutter/presentation/sign_up/sign_up_screen.dart';
 import 'package:recipe_flutter/presentation/splash/splash_screen.dart';
 
 final router = GoRouter(
@@ -13,14 +14,33 @@ final router = GoRouter(
   routes: [
     GoRoute(
       path: '/Splash',
-      builder: (context, state) => const SplashScreen(),
+      builder: (context, state) => SplashScreen(
+        onTapStartCooking: () {
+          context.go('/SignIn');
+        },
+      ),
     ),
     GoRoute(
       path: '/SignIn',
-      builder: (context, state) => const SignInScreen(),
+      builder: (context, state) => SignInScreen(
+        onTapSignIn: () {
+          context.go('/SavedRecipes');
+        },
+        onTapRouteToSignUp: () {
+          context.go('/SignUp');
+        },
+      ),
     ),
     GoRoute(
-      path: 'SavedRecipes',
+      path: '/SignUp',
+      builder: (context, state) => SignUpScreen(
+        onTapRouteToSignIn: () {
+          context.go('/SignIn');
+        },
+      ),
+    ),
+    GoRoute(
+      path: '/SavedRecipes',
       builder: (context, state) => FutureBuilder<List<Recipe>>(
         future: GetSavedRecipesUseCase(
           recipeRepository: MockRecipeRepositoryImpl(),

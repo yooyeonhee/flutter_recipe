@@ -4,8 +4,19 @@ import 'package:recipe_flutter/core/presentation/components/input_field.dart';
 import 'package:recipe_flutter/ui/text_styles.dart';
 import 'package:recipe_flutter/ui/color_styles.dart';
 
-class SignUpScreen extends StatelessWidget {
-  const SignUpScreen({super.key});
+class SignUpScreen extends StatefulWidget {
+  final void Function() onTapRouteToSignIn;
+  const SignUpScreen({
+    super.key,
+    required this.onTapRouteToSignIn,
+  });
+
+  @override
+  State<SignUpScreen> createState() => _SignUpScreenState();
+}
+
+class _SignUpScreenState extends State<SignUpScreen> {
+  bool _isChecked = false;
 
   @override
   Widget build(BuildContext context) {
@@ -53,8 +64,18 @@ class SignUpScreen extends StatelessWidget {
               ),
               Row(
                 children: [
-                  const Icon(Icons.check_box_outline_blank_outlined,
-                      size: 17, color: ColorStyles.secondary100),
+                  Checkbox(
+                      value: _isChecked,
+                      shape: RoundedRectangleBorder(
+                          borderRadius: BorderRadius.circular(5)),
+                      side: const BorderSide(
+                          width: 1, color: ColorStyles.secondary100),
+                      activeColor: ColorStyles.secondary100,
+                      onChanged: (value) {
+                        setState(() {
+                          _isChecked = value!;
+                        });
+                      }),
                   const SizedBox(
                     width: 5,
                   ),
@@ -162,10 +183,13 @@ class SignUpScreen extends StatelessWidget {
                   const SizedBox(
                     width: 5,
                   ),
-                  Text(
-                    'Sign up',
-                    style: TextStyles.smallerTextBold
-                        .copyWith(color: ColorStyles.secondary100),
+                  GestureDetector(
+                    onTap: widget.onTapRouteToSignIn,
+                    child: Text(
+                      'Sign in',
+                      style: TextStyles.smallerTextBold
+                          .copyWith(color: ColorStyles.secondary100),
+                    ),
                   )
                 ],
               ),
