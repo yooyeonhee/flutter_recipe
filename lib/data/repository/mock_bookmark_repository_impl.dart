@@ -1,7 +1,7 @@
 import 'package:recipe_flutter/domain/repository/bookmark_repository.dart';
 
 class MockBookmarkRepositoryImpl implements BookmarkRepository {
-  final _bookmarkIds = <int>{2, 4};
+  final _bookmarkIds = <int>{2, 3, 6};
   @override
   Future<void> bookmarkToggle(int id) async {
     if (_bookmarkIds.contains(id)) {

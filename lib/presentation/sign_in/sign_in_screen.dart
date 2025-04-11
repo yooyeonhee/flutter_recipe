@@ -64,7 +64,7 @@ class SignInScreen extends StatelessWidget {
               ),
               Text(
                 'Or Sign in With',
-                style: TextStyles.smallTextRegular
+                style: TextStyles.smallerTextRegular
                     .copyWith(color: ColorStyles.gray3),
               ),
               const SizedBox(

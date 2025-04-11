@@ -314,6 +314,9 @@ class MockRecipeRepositoryImpl implements RecipeRepository {
 
   @override
   Future<List<Recipe>> getRecipes() async {
+    // mock 데이터 개발 환경에서 로딩 시간을 부여하기 위한 delay 로직
+    await Future.delayed(const Duration(microseconds: 500));
+
     final recipes = _mockData['recipes']!;
     return recipes.map((e) => Recipe.fromJson(e)).toList();
   }

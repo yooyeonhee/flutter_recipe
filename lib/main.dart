@@ -7,7 +7,11 @@ import 'package:recipe_flutter/core/presentation/components/rating_button.dart';
 import 'package:recipe_flutter/core/presentation/components/small_button.dart';
 import 'package:recipe_flutter/core/presentation/components/tabs.dart';
 import 'package:recipe_flutter/core/presentation/dialogs/rating_dialog.dart';
-import 'package:recipe_flutter/presentation/sign_in/sign_in_screen.dart';
+import 'package:recipe_flutter/data/repository/mock_bookmark_repository_impl.dart';
+import 'package:recipe_flutter/data/repository/mock_recipe_repository_impl.dart';
+import 'package:recipe_flutter/domain/model/recipe.dart';
+import 'package:recipe_flutter/domain/use_case/get_saved_recipes_use_case.dart';
+import 'package:recipe_flutter/presentation/saved_recipes/saved_recipes_screen.dart';
 import 'package:recipe_flutter/ui/text_styles.dart';
 
 void main() {
@@ -23,25 +27,27 @@ class MyApp extends StatelessWidget {
     return MaterialApp(
       title: 'Flutter Demo',
       theme: ThemeData(
-        // This is the theme of your application.
-        //
-        // TRY THIS: Try running your application with "flutter run". You'll see
-        // the application has a purple toolbar. Then, without quitting the app,
-        // try changing the seedColor in the colorScheme below to Colors.green
-        // and then invoke "hot reload" (save your changes or press the "hot
-        // reload" button in a Flutter-supported IDE, or press "r" if you used
-        // the command line to start the app).
-        //
-        // Notice that the counter didn't reset back to zero; the application
-        // state is not lost during the reload. To reset the state, use hot
-        // restart instead.
-        //
-        // This works for code too, not just values: Most code changes can be
-        // tested with just a hot reload.
-        colorScheme: ColorScheme.fromSeed(seedColor: Colors.deepPurple),
+        colorScheme: const ColorScheme.light(),
+        scaffoldBackgroundColor: Colors.white,
         useMaterial3: true,
       ),
-      home: const SignInScreen(),
+      home: FutureBuilder<List<Recipe>>(
+          future: GetSavedRecipesUseCase(
+            recipeRepository: MockRecipeRepositoryImpl(),
+            bookmarkRepository: MockBookmarkRepositoryImpl(),
+          ).execute(),
+          builder: (context, snapshot) {
+            if (snapshot.connectionState == ConnectionState.waiting) {
+              return const Center(
+                child: CircularProgressIndicator(),
+              );
+            }
+            final recipes = snapshot.data!;
+
+            return SavedRecipesScreen(
+              recipes: recipes,
+            );
+          }),
     );
   }
 }
