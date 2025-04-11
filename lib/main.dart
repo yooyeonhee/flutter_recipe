@@ -7,6 +7,7 @@ import 'package:recipe_flutter/core/presentation/components/rating_button.dart';
 import 'package:recipe_flutter/core/presentation/components/small_button.dart';
 import 'package:recipe_flutter/core/presentation/components/tabs.dart';
 import 'package:recipe_flutter/core/presentation/dialogs/rating_dialog.dart';
+import 'package:recipe_flutter/presentation/sign_in/sign_in_screen.dart';
 import 'package:recipe_flutter/ui/text_styles.dart';
 
 void main() {
@@ -40,7 +41,7 @@ class MyApp extends StatelessWidget {
         colorScheme: ColorScheme.fromSeed(seedColor: Colors.deepPurple),
         useMaterial3: true,
       ),
-      home: const MyHomePage(),
+      home: const SignInScreen(),
     );
   }
 }
