@@ -7,12 +7,7 @@ import 'package:recipe_flutter/core/presentation/components/rating_button.dart';
 import 'package:recipe_flutter/core/presentation/components/small_button.dart';
 import 'package:recipe_flutter/core/presentation/components/tabs.dart';
 import 'package:recipe_flutter/core/presentation/dialogs/rating_dialog.dart';
-import 'package:recipe_flutter/data/repository/mock_bookmark_repository_impl.dart';
-import 'package:recipe_flutter/data/repository/mock_recipe_repository_impl.dart';
-import 'package:recipe_flutter/domain/model/recipe.dart';
-import 'package:recipe_flutter/domain/use_case/get_saved_recipes_use_case.dart';
-import 'package:recipe_flutter/presentation/saved_recipes/saved_recipes_screen.dart';
-import 'package:recipe_flutter/presentation/sign_up/sign_up_screen.dart';
+import 'package:recipe_flutter/core/routing/router.dart';
 import 'package:recipe_flutter/ui/text_styles.dart';
 
 void main() {
@@ -25,28 +20,14 @@ class MyApp extends StatelessWidget {
   // This widget is the root of your application.
   @override
   Widget build(BuildContext context) {
-    return MaterialApp(
+    return MaterialApp.router(
+      routerConfig: router,
       title: 'Flutter Demo',
       theme: ThemeData(
         colorScheme: const ColorScheme.light(),
         scaffoldBackgroundColor: Colors.white,
         useMaterial3: true,
       ),
-      home: FutureBuilder<List<Recipe>>(
-          future: GetSavedRecipesUseCase(
-            recipeRepository: MockRecipeRepositoryImpl(),
-            bookmarkRepository: MockBookmarkRepositoryImpl(),
-          ).execute(),
-          builder: (context, snapshot) {
-            if (snapshot.connectionState == ConnectionState.waiting) {
-              return const Center(
-                child: CircularProgressIndicator(),
-              );
-            }
-            final recipes = snapshot.data!;
-
-            return const SignUpScreen();
-          }),
     );
   }
 }
