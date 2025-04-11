@@ -5,6 +5,7 @@ import 'package:recipe_flutter/core/presentation/components/input_field.dart';
 import 'package:recipe_flutter/core/presentation/components/medium_button.dart';
 import 'package:recipe_flutter/core/presentation/components/rating_button.dart';
 import 'package:recipe_flutter/core/presentation/components/small_button.dart';
+import 'package:recipe_flutter/core/presentation/components/tabs.dart';
 import 'package:recipe_flutter/ui/text_styles.dart';
 
 void main() {
@@ -91,6 +92,13 @@ class MyHomePage extends StatelessWidget {
           const RatingButton(
             '4',
             isSelected: true,
+          ),
+          Tabs(
+            labels: ['label1', 'label2'],
+            selectedIndex: 1,
+            onChangeTab: (int index) {
+              print('tab: $index');
+            },
           )
         ],
       ),
