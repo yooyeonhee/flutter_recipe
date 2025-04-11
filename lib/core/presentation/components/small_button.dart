@@ -5,11 +5,15 @@ import 'package:recipe_flutter/ui/text_styles.dart';
 class SmallButton extends StatefulWidget {
   final String text;
   final void Function() onPressed;
+  final Color color;
+  final TextStyle textStyle;
 
   const SmallButton(
     this.text, {
     super.key,
     required this.onPressed,
+    this.color = ColorStyles.primary100,
+    this.textStyle = TextStyles.normalTextBold,
   });
 
   @override
@@ -42,7 +46,7 @@ class _SmallButtonState extends State<SmallButton> {
         height: 37,
         decoration: BoxDecoration(
           borderRadius: BorderRadius.circular(10),
-          color: isPressed ? ColorStyles.gray4 : ColorStyles.primary100,
+          color: isPressed ? ColorStyles.gray4 : widget.color,
         ),
         child: Row(
           mainAxisAlignment: MainAxisAlignment.center,
@@ -50,7 +54,7 @@ class _SmallButtonState extends State<SmallButton> {
             Text(
               widget.text,
               // copyWith를 사용하게 되면 런타임에 복사가 되기때문에 성능이 저하될 수 있다. TextStyles 내부에 컬러 속성까지 부여해서 해결할 수 있다.
-              style: TextStyles.normalTextBold.copyWith(
+              style: widget.textStyle.copyWith(
                 color: ColorStyles.white,
               ),
             ),

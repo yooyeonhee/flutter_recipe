@@ -6,6 +6,7 @@ import 'package:recipe_flutter/core/presentation/components/medium_button.dart';
 import 'package:recipe_flutter/core/presentation/components/rating_button.dart';
 import 'package:recipe_flutter/core/presentation/components/small_button.dart';
 import 'package:recipe_flutter/core/presentation/components/tabs.dart';
+import 'package:recipe_flutter/core/presentation/dialogs/rating_dialog.dart';
 import 'package:recipe_flutter/ui/text_styles.dart';
 
 void main() {
@@ -99,7 +100,24 @@ class MyHomePage extends StatelessWidget {
             onChangeTab: (int index) {
               print('tab: $index');
             },
-          )
+          ),
+          ElevatedButton(
+              onPressed: () {
+                showDialog(
+                  context: context,
+                  builder: (_) {
+                    return RatingDialog(
+                      title: 'Rate recipe',
+                      value: 0,
+                      actionLabel: 'Send',
+                      onChangeValue: (value) {
+                        print(value);
+                      },
+                    );
+                  },
+                );
+              },
+              child: const Text('open rating dialog'))
         ],
       ),
     );
