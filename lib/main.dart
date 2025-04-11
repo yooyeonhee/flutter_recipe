@@ -12,6 +12,7 @@ import 'package:recipe_flutter/data/repository/mock_recipe_repository_impl.dart'
 import 'package:recipe_flutter/domain/model/recipe.dart';
 import 'package:recipe_flutter/domain/use_case/get_saved_recipes_use_case.dart';
 import 'package:recipe_flutter/presentation/saved_recipes/saved_recipes_screen.dart';
+import 'package:recipe_flutter/presentation/sign_up/sign_up_screen.dart';
 import 'package:recipe_flutter/ui/text_styles.dart';
 
 void main() {
@@ -44,9 +45,7 @@ class MyApp extends StatelessWidget {
             }
             final recipes = snapshot.data!;
 
-            return SavedRecipesScreen(
-              recipes: recipes,
-            );
+            return const SignUpScreen();
           }),
     );
   }
