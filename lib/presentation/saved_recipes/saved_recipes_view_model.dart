@@ -1,17 +1,13 @@
 import 'package:flutter/material.dart';
-import 'package:recipe_flutter/domain/model/recipe.dart';
 import 'package:recipe_flutter/domain/use_case/get_saved_recipes_use_case.dart';
+import 'package:recipe_flutter/presentation/saved_recipes/saved_recipes_state.dart';
 
 class SavedRecipesViewModel with ChangeNotifier {
   final GetSavedRecipesUseCase _getSavedRecipesUseCase;
 
-  List<Recipe> _recipes = [];
+  SavedRecipesState _state = SavedRecipesState();
 
-  List<Recipe> get recipes => List.unmodifiable(_recipes);
-
-  bool _isLoading = false;
-
-  bool get isLoading => _isLoading;
+  SavedRecipesState get state => _state;
 
   SavedRecipesViewModel({
     required GetSavedRecipesUseCase getSavedRecipesUseCase,
@@ -20,11 +16,13 @@ class SavedRecipesViewModel with ChangeNotifier {
   }
 
   void _loadRecipeData() async {
-    _isLoading = true;
+    _state = state.copyWith(isLoading: true);
     notifyListeners();
 
-    _recipes = await _getSavedRecipesUseCase.execute();
-    _isLoading = false;
+    _state = state.copyWith(
+      recipes: await _getSavedRecipesUseCase.execute(),
+      isLoading: false,
+    );
 
     notifyListeners();
   }

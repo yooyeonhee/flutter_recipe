@@ -1,12 +1,6 @@
-import 'package:flutter/material.dart';
 import 'package:go_router/go_router.dart';
 import 'package:recipe_flutter/core/routing/route_paths.dart';
-import 'package:recipe_flutter/data/repository/mock_bookmark_repository_impl.dart';
-import 'package:recipe_flutter/data/repository/mock_recipe_repository_impl.dart';
-import 'package:recipe_flutter/domain/model/recipe.dart';
-import 'package:recipe_flutter/domain/use_case/get_saved_recipes_use_case.dart';
 import 'package:recipe_flutter/presentation/saved_recipes/screen/saved_recipes_root.dart';
-import 'package:recipe_flutter/presentation/saved_recipes/screen/saved_recipes_screen.dart';
 import 'package:recipe_flutter/presentation/sign_in/sign_in_screen.dart';
 import 'package:recipe_flutter/presentation/sign_up/sign_up_screen.dart';
 import 'package:recipe_flutter/presentation/splash/splash_screen.dart';
