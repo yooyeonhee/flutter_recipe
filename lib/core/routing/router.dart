@@ -1,10 +1,14 @@
+import 'package:flutter/widgets.dart';
 import 'package:go_router/go_router.dart';
 import 'package:recipe_flutter/core/routing/route_paths.dart';
-import 'package:recipe_flutter/presentation/home/home_screen.dart';
+import 'package:recipe_flutter/presentation/home/screen/home_root.dart';
+import 'package:recipe_flutter/presentation/home/screen/home_screen.dart';
 import 'package:recipe_flutter/presentation/main/main_screen.dart';
 import 'package:recipe_flutter/presentation/notifications/notifications_screen.dart';
 import 'package:recipe_flutter/presentation/profile/profile_screen.dart';
 import 'package:recipe_flutter/presentation/saved_recipes/screen/saved_recipes_root.dart';
+import 'package:recipe_flutter/presentation/search/screen/search_root.dart';
+import 'package:recipe_flutter/presentation/search/screen/search_screen.dart';
 import 'package:recipe_flutter/presentation/sign_in/sign_in_screen.dart';
 import 'package:recipe_flutter/presentation/sign_up/sign_up_screen.dart';
 import 'package:recipe_flutter/presentation/splash/splash_screen.dart';
@@ -39,6 +43,11 @@ final router = GoRouter(
         },
       ),
     ),
+
+    //네비게이션 바를 삭제하기 위해 최상단에 구현
+    GoRoute(
+        path: RoutePaths.search,
+        builder: (context, state) => const SearchRoot()),
     StatefulShellRoute.indexedStack(
       builder: (context, state, navigationShell) {
         return MainScreen(
@@ -55,9 +64,13 @@ final router = GoRouter(
           routes: [
             GoRoute(
               path: RoutePaths.home,
-              builder: (context, state) => const HomeScreen(
-                name: 'Jega',
-              ),
+              builder: (context, state) => const HomeRoot(),
+              // 하단 네비게이션 바를 유지하고 싶은 경우
+              // routes: [
+              //   GoRoute(
+              //       path: 'Search',
+              //       builder: (context, state) => const SearchScreen()),
+              // ]
             ),
           ],
         ),

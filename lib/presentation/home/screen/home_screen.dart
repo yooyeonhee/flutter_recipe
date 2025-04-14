@@ -5,10 +5,12 @@ import 'package:recipe_flutter/ui/color_styles.dart';
 
 class HomeScreen extends StatelessWidget {
   final String name;
+  final void Function() onTapSearchField;
 
   const HomeScreen({
     super.key,
     required this.name,
+    required this.onTapSearchField,
   });
 
   @override
@@ -57,8 +59,18 @@ class HomeScreen extends StatelessWidget {
             ),
             Row(
               children: [
-                const Expanded(
-                    child: SearchInputField(placeholder: 'Search recipe')),
+                Expanded(
+                  child: GestureDetector(
+                    behavior: HitTestBehavior.opaque,
+                    onTap: onTapSearchField,
+                    child: const IgnorePointer(
+                      child: SearchInputField(
+                        placeholder: 'Search recipe',
+                        isReadOnly: true,
+                      ),
+                    ),
+                  ),
+                ),
                 const SizedBox(
                   width: 20,
                 ),
