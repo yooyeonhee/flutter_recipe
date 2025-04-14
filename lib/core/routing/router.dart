@@ -5,7 +5,8 @@ import 'package:recipe_flutter/data/repository/mock_bookmark_repository_impl.dar
 import 'package:recipe_flutter/data/repository/mock_recipe_repository_impl.dart';
 import 'package:recipe_flutter/domain/model/recipe.dart';
 import 'package:recipe_flutter/domain/use_case/get_saved_recipes_use_case.dart';
-import 'package:recipe_flutter/presentation/saved_recipes/saved_recipes_screen.dart';
+import 'package:recipe_flutter/presentation/saved_recipes/screen/saved_recipes_root.dart';
+import 'package:recipe_flutter/presentation/saved_recipes/screen/saved_recipes_screen.dart';
 import 'package:recipe_flutter/presentation/sign_in/sign_in_screen.dart';
 import 'package:recipe_flutter/presentation/sign_up/sign_up_screen.dart';
 import 'package:recipe_flutter/presentation/splash/splash_screen.dart';
@@ -42,22 +43,7 @@ final router = GoRouter(
     ),
     GoRoute(
       path: RoutePaths.savedRecipes,
-      builder: (context, state) => FutureBuilder<List<Recipe>>(
-        future: GetSavedRecipesUseCase(
-          recipeRepository: MockRecipeRepositoryImpl(),
-          bookmarkRepository: MockBookmarkRepositoryImpl(),
-        ).execute(),
-        builder: (context, snapshot) {
-          if (snapshot.connectionState == ConnectionState.waiting) {
-            return const Center(
-              child: CircularProgressIndicator(),
-            );
-          }
-          final recipes = snapshot.data!;
-
-          return SavedRecipesScreen(recipes: recipes);
-        },
-      ),
+      builder: (context, state) => const SavedRecipesRoot(),
     )
   ],
 );
