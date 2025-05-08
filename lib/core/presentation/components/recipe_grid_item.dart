@@ -10,66 +10,64 @@ class RecipeGridItem extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return Padding(
-      padding: const EdgeInsets.symmetric(vertical: 10),
-      child: Stack(
-        children: [
-          Container(
-            decoration: BoxDecoration(
-                borderRadius: BorderRadius.circular(10),
-                image: DecorationImage(
-                    image: NetworkImage(recipe.image), fit: BoxFit.cover)),
+    return Stack(
+      children: [
+        Container(
+          decoration: BoxDecoration(
+              borderRadius: BorderRadius.circular(10),
+              image: DecorationImage(
+                  image: NetworkImage(recipe.image), fit: BoxFit.cover)),
+        ),
+        Positioned(
+          left: 10,
+          bottom: 10,
+          child: Column(
+            crossAxisAlignment: CrossAxisAlignment.start,
+            children: [
+              SizedBox(
+                width: 140,
+                child: Text(
+                  recipe.name,
+                  maxLines: 2,
+                  style: TextStyles.smallerTextBold
+                      .copyWith(color: ColorStyles.white),
+                ),
+              ),
+              Text(
+                'By ${recipe.chef}',
+                style: TextStyles.smallerTextRegular
+                    .copyWith(color: ColorStyles.white),
+              ),
+            ],
           ),
-          Positioned(
-            left: 10,
-            bottom: 10,
-            child: Column(
-              crossAxisAlignment: CrossAxisAlignment.start,
+        ),
+        Positioned(
+          top: 10,
+          right: 10,
+          child: Container(
+            width: 37,
+            height: 16,
+            decoration: BoxDecoration(
+                color: ColorStyles.secondary20,
+                borderRadius: BorderRadius.circular(20)),
+            child: Row(
+              mainAxisAlignment: MainAxisAlignment.center,
               children: [
-                SizedBox(
-                  width: 200,
-                  child: Text(
-                    recipe.name,
-                    style: TextStyles.smallerTextBold
-                        .copyWith(color: ColorStyles.white),
-                  ),
+                const Icon(
+                  Icons.star,
+                  size: 8,
+                  color: ColorStyles.secondary100,
                 ),
                 Text(
-                  'By ${recipe.chef}',
+                  recipe.rating.toString(),
                   style: TextStyles.smallerTextRegular
-                      .copyWith(color: ColorStyles.white),
+                      .copyWith(color: ColorStyles.black),
                 ),
               ],
             ),
           ),
-          Positioned(
-            top: 10,
-            right: 10,
-            child: Container(
-              width: 37,
-              height: 16,
-              decoration: BoxDecoration(
-                  color: ColorStyles.secondary20,
-                  borderRadius: BorderRadius.circular(20)),
-              child: Row(
-                mainAxisAlignment: MainAxisAlignment.center,
-                children: [
-                  const Icon(
-                    Icons.star,
-                    size: 8,
-                    color: ColorStyles.secondary100,
-                  ),
-                  Text(
-                    recipe.rating.toString(),
-                    style: TextStyles.smallerTextRegular
-                        .copyWith(color: ColorStyles.black),
-                  ),
-                ],
-              ),
-            ),
-          ),
-        ],
-      ),
+        ),
+      ],
     );
   }
 }

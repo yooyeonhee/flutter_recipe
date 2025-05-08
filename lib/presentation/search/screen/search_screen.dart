@@ -7,9 +7,12 @@ import 'package:recipe_flutter/ui/text_styles.dart';
 
 class SearchScreen extends StatelessWidget {
   final SearchState state;
+  final void Function(String query)? onChanged;
+
   const SearchScreen({
     super.key,
     required this.state,
+    this.onChanged,
   });
 
   @override
@@ -32,9 +35,11 @@ class SearchScreen extends StatelessWidget {
             ),
             Row(
               children: [
-                const Expanded(
+                Expanded(
                   child: SearchInputField(
                     placeholder: 'Search recipe',
+                    // 실시간 검색이 아닌 사용자의 confirm 여부에 따라 검색하는 경우 controller를 이용해 연결해야한다.
+                    onChanged: onChanged, // 실시간 input 변경에 따라 검색
                   ),
                 ),
                 const SizedBox(
@@ -70,6 +75,7 @@ class SearchScreen extends StatelessWidget {
                       gridDelegate:
                           const SliverGridDelegateWithFixedCrossAxisCount(
                         crossAxisCount: 2,
+                        mainAxisSpacing: 15,
                         crossAxisSpacing: 15,
                       ),
                       itemCount: state.recipes.length,
