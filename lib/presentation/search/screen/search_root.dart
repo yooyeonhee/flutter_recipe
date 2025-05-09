@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
-import 'package:flutter/widgets.dart';
 import 'package:recipe_flutter/core/di/di_setup.dart';
 import 'package:recipe_flutter/core/presentation/components/search_filter_sheet.dart';
+import 'package:recipe_flutter/domain/filter/filter_state.dart';
 import 'package:recipe_flutter/presentation/search/screen/search_screen.dart';
 import 'package:recipe_flutter/presentation/search/search_view_model.dart';
 
@@ -22,9 +22,16 @@ class SearchRoot extends StatelessWidget {
           },
           onTapFilter: () {
             showModalBottomSheet(
+              isScrollControlled: true,
               context: context,
               builder: (context) {
-                return const SearchFilterSheet();
+                return SearchFilterSheet(
+                  state: viewModel.state.filterState,
+                  onChangeFilter: (FilterState state) {
+                    viewModel.onChangeFilter(state);
+                    Navigator.pop(context);
+                  },
+                );
               },
             );
           },
