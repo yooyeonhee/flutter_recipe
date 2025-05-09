@@ -11,6 +11,7 @@ import 'package:recipe_flutter/domain/repository/recent_search_recipe_repository
 import 'package:recipe_flutter/domain/repository/recipe_repository.dart';
 import 'package:recipe_flutter/domain/use_case/get_saved_recipes_use_case.dart';
 import 'package:recipe_flutter/domain/use_case/search_recipes_use_case.dart';
+import 'package:recipe_flutter/presentation/home/home_view_model.dart';
 import 'package:recipe_flutter/presentation/saved_recipes/saved_recipes_view_model.dart';
 import 'package:recipe_flutter/presentation/search/search_view_model.dart';
 
@@ -57,5 +58,8 @@ void diSetup() {
       recentSearchRecipeRepository: getIt(),
       searchRecipesUseCase: getIt(),
     ),
+  );
+  getIt.registerFactory<HomeViewModel>(
+    () => HomeViewModel(),
   );
 }

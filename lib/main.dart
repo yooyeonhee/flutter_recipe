@@ -83,13 +83,6 @@ class MyHomePage extends StatelessWidget {
             '4',
             isSelected: true,
           ),
-          Tabs(
-            labels: ['label1', 'label2'],
-            selectedIndex: 1,
-            onChangeTab: (int index) {
-              print('tab: $index');
-            },
-          ),
           ElevatedButton(
               onPressed: () {
                 showDialog(
