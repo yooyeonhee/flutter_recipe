@@ -17,8 +17,8 @@ class RecipeCategorySelector extends StatelessWidget {
   Widget build(BuildContext context) {
     return Tabs(
       labels: categories,
-      selectedTab: 'All',
-      onChangeTab: (String tab) {},
+      selectedTab: selectedCategory,
+      onChangeTab: onSelectedCategory,
     );
   }
 }

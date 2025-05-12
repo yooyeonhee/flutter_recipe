@@ -1,17 +1,22 @@
 import 'package:flutter/material.dart';
 import 'package:recipe_flutter/core/presentation/components/recipe_category_selector.dart';
 import 'package:recipe_flutter/core/presentation/components/search_input_field.dart';
+import 'package:recipe_flutter/presentation/home/home_state.dart';
 import 'package:recipe_flutter/ui/text_styles.dart';
 import 'package:recipe_flutter/ui/color_styles.dart';
 
 class HomeScreen extends StatelessWidget {
   final String name;
   final void Function() onTapSearchField;
+  final void Function(String category) onSelectCategory;
+  final HomeState state;
 
   const HomeScreen({
     super.key,
     required this.name,
     required this.onTapSearchField,
+    required this.state,
+    required this.onSelectCategory,
   });
 
   @override
@@ -95,19 +100,15 @@ class HomeScreen extends StatelessWidget {
             ),
           ),
           Padding(
-            padding: const EdgeInsets.only(left: 30),
+            padding: const EdgeInsets.only(
+              left: 30,
+              top: 10,
+              bottom: 10,
+            ),
             child: RecipeCategorySelector(
-              categories: const [
-                'All',
-                'Indian',
-                'Italian',
-                'Asian',
-                'Chinese',
-                'Chinese',
-                'Chinese'
-              ],
-              selectedCategory: 'All',
-              onSelectedCategory: (String category) {},
+              categories: state.categories,
+              selectedCategory: state.selectedCategory,
+              onSelectedCategory: onSelectCategory,
             ),
           ),
         ],
