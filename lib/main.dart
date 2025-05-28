@@ -6,7 +6,6 @@ import 'package:recipe_flutter/core/presentation/components/input_field.dart';
 import 'package:recipe_flutter/core/presentation/components/medium_button.dart';
 import 'package:recipe_flutter/core/presentation/components/rating_button.dart';
 import 'package:recipe_flutter/core/presentation/components/small_button.dart';
-import 'package:recipe_flutter/core/presentation/components/tabs.dart';
 import 'package:recipe_flutter/core/presentation/dialogs/rating_dialog.dart';
 import 'package:recipe_flutter/core/routing/router.dart';
 import 'package:recipe_flutter/ui/text_styles.dart';

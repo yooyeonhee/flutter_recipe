@@ -1,6 +1,7 @@
 import 'package:get_it/get_it.dart';
 import 'package:recipe_flutter/data/data_source/local/default_local_storage.dart';
 import 'package:recipe_flutter/data/data_source/remote/remote_recipe_data_source_impl.dart';
+import 'package:recipe_flutter/data/repository/error_mock_recipe_repository_impl.dart';
 import 'package:recipe_flutter/data/repository/mock_bookmark_repository_impl.dart';
 import 'package:recipe_flutter/data/repository/mock_recent_search_recipe_repository_impl.dart';
 import 'package:recipe_flutter/data/repository/mock_recipe_repository_impl.dart';
@@ -29,6 +30,10 @@ void diSetup() {
     MockRecipeRepositoryImpl(
       recipeDataSource: getIt(),
     ),
+    // 에러처리 테스트
+    // ErrorMockRecipeRepositoryImpl(
+    //   recipeDataSource: getIt(),
+    // ),
   );
   getIt.registerSingleton<BookmarkRepository>(MockBookmarkRepositoryImpl());
   getIt.registerSingleton<RecentSearchRecipeRepository>(

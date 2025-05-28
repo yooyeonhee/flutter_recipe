@@ -1,4 +1,8 @@
+import 'dart:async';
+import 'dart:developer';
 import 'package:flutter/material.dart';
+import 'package:recipe_flutter/core/domain/error/network_error.dart';
+import 'package:recipe_flutter/core/domain/error/result.dart';
 import 'package:recipe_flutter/domain/use_case/get_categories_use_case.dart';
 import 'package:recipe_flutter/domain/use_case/get_dishes_by_category_use_case.dart';
 import 'package:recipe_flutter/presentation/home/home_state.dart';
@@ -6,6 +10,10 @@ import 'package:recipe_flutter/presentation/home/home_state.dart';
 class HomeViewModel with ChangeNotifier {
   final GetCategoriesUseCase _getCategoriesUseCase;
   final GetDishesByCategoryUseCase _getDishesByCategoryUseCase;
+
+  final _eventController = StreamController<NetworkError>();
+
+  Stream<NetworkError> get eventStream => _eventController.stream;
 
   HomeState _state = HomeState();
 
@@ -20,15 +28,28 @@ class HomeViewModel with ChangeNotifier {
   HomeState get state => _state;
 
   void _fetchCategories() async {
-    _state = state.copyWith(
-      categories: await _getCategoriesUseCase.execute(),
-      selectedCategory: 'All',
-    );
-    notifyListeners();
+    final result = await _getCategoriesUseCase.execute();
+    switch (result) {
+      case ResultSuccess<List<String>, NetworkError>():
+        _state = state.copyWith(
+          categories: result.data,
+          selectedCategory: 'All',
+        );
+        notifyListeners();
 
-    await _fetchDishesByCategory('All');
+        await _fetchDishesByCategory('All');
 
-    notifyListeners();
+        notifyListeners();
+      case ResultError<List<String>, NetworkError>():
+        switch (result.error) {
+          case NetworkError.requestTimeout:
+          case NetworkError.noInternet:
+          case NetworkError.serverError:
+          case NetworkError.unknown:
+        }
+        // log(result.error.toString());
+        _eventController.add(result.error);
+    }
   }
 
   Future<void> _fetchDishesByCategory(String category) async {
