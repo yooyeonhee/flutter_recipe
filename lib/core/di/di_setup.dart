@@ -1,7 +1,6 @@
 import 'package:get_it/get_it.dart';
 import 'package:recipe_flutter/data/data_source/local/default_local_storage.dart';
 import 'package:recipe_flutter/data/data_source/remote/remote_recipe_data_source_impl.dart';
-import 'package:recipe_flutter/data/repository/error_mock_recipe_repository_impl.dart';
 import 'package:recipe_flutter/data/repository/mock_bookmark_repository_impl.dart';
 import 'package:recipe_flutter/data/repository/mock_recent_search_recipe_repository_impl.dart';
 import 'package:recipe_flutter/data/repository/mock_recipe_repository_impl.dart';
@@ -12,6 +11,7 @@ import 'package:recipe_flutter/domain/repository/recent_search_recipe_repository
 import 'package:recipe_flutter/domain/repository/recipe_repository.dart';
 import 'package:recipe_flutter/domain/use_case/get_categories_use_case.dart';
 import 'package:recipe_flutter/domain/use_case/get_dishes_by_category_use_case.dart';
+import 'package:recipe_flutter/domain/use_case/get_new_recipes_use_case.dart';
 import 'package:recipe_flutter/domain/use_case/get_saved_recipes_use_case.dart';
 import 'package:recipe_flutter/domain/use_case/search_recipes_use_case.dart';
 import 'package:recipe_flutter/presentation/home/home_view_model.dart';
@@ -58,6 +58,9 @@ void diSetup() {
   );
   getIt.registerSingleton(
     GetDishesByCategoryUseCase(recipeRepository: getIt()),
+  );
+  getIt.registerSingleton(
+    GetNewRecipesUseCase(recipeRepository: getIt()),
   );
 
   // ViewModel
