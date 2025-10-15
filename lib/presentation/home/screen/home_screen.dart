@@ -3,22 +3,19 @@ import 'package:recipe_flutter/core/presentation/components/dish_card.dart';
 import 'package:recipe_flutter/core/presentation/components/new_recipe_card.dart';
 import 'package:recipe_flutter/core/presentation/components/recipe_category_selector.dart';
 import 'package:recipe_flutter/core/presentation/components/search_input_field.dart';
+import 'package:recipe_flutter/presentation/home/home_action.dart';
 import 'package:recipe_flutter/presentation/home/home_state.dart';
 import 'package:recipe_flutter/ui/text_styles.dart';
 import 'package:recipe_flutter/ui/color_styles.dart';
 
 class HomeScreen extends StatelessWidget {
-  final String name;
-  final void Function() onTapSearchField;
-  final void Function(String category) onSelectCategory;
+  final void Function(HomeAction action) onAction;
   final HomeState state;
 
   const HomeScreen({
     super.key,
-    required this.name,
-    required this.onTapSearchField,
+    required this.onAction,
     required this.state,
-    required this.onSelectCategory,
   });
 
   @override
@@ -41,7 +38,7 @@ class HomeScreen extends StatelessWidget {
                         crossAxisAlignment: CrossAxisAlignment.start,
                         children: [
                           Text(
-                            'Hello $name',
+                            'Hello $state.name',
                             style: TextStyles.largeTextBold,
                           ),
                           const SizedBox(
@@ -74,7 +71,7 @@ class HomeScreen extends StatelessWidget {
                       Expanded(
                         child: GestureDetector(
                           behavior: HitTestBehavior.opaque,
-                          onTap: onTapSearchField,
+                          onTap: () => onAction(const OnTapSearchField()),
                           child: const IgnorePointer(
                             child: SearchInputField(
                               placeholder: 'Search recipe',
@@ -112,7 +109,8 @@ class HomeScreen extends StatelessWidget {
               child: RecipeCategorySelector(
                 categories: state.categories,
                 selectedCategory: state.selectedCategory,
-                onSelectedCategory: onSelectCategory,
+                onSelectedCategory: (category) =>
+                    onAction(HomeAction.onSelectCategory(category)),
               ),
             ),
             const SizedBox(
@@ -148,7 +146,7 @@ class HomeScreen extends StatelessWidget {
                     style: TextStyles.normalTextBold,
                   ),
                   const SizedBox(
-                    height: 5,
+                    height: 10,
                   ),
                   SingleChildScrollView(
                     scrollDirection: Axis.horizontal,

@@ -1,5 +1,4 @@
 import 'dart:async';
-import 'dart:developer';
 import 'package:flutter/material.dart';
 import 'package:recipe_flutter/core/domain/error/network_error.dart';
 import 'package:recipe_flutter/core/domain/error/result.dart';
@@ -8,6 +7,7 @@ import 'package:recipe_flutter/domain/model/recipe.dart';
 import 'package:recipe_flutter/domain/use_case/get_categories_use_case.dart';
 import 'package:recipe_flutter/domain/use_case/get_dishes_by_category_use_case.dart';
 import 'package:recipe_flutter/domain/use_case/get_new_recipes_use_case.dart';
+import 'package:recipe_flutter/presentation/home/home_action.dart';
 import 'package:recipe_flutter/presentation/home/home_state.dart';
 
 class HomeViewModel with ChangeNotifier {
@@ -19,7 +19,7 @@ class HomeViewModel with ChangeNotifier {
 
   Stream<NetworkError> get eventStream => _eventController.stream;
 
-  HomeState _state = HomeState();
+  HomeState _state = const HomeState(name: 'Jega');
 
   HomeViewModel(
       {required GetCategoriesUseCase getCategoriesUseCase,
@@ -65,13 +65,6 @@ class HomeViewModel with ChangeNotifier {
     notifyListeners();
   }
 
-  void onSelectCategory(String category) async {
-    _state = state.copyWith(selectedCategory: category);
-    notifyListeners();
-
-    await _fetchDishesByCategory(category);
-  }
-
   Future<void> _fetchNewRecipes() async {
     final result = await _getNewRecipesUseCase.execute();
 
@@ -88,5 +81,19 @@ class HomeViewModel with ChangeNotifier {
           case NewRecipeError.unknown:
         }
     }
+  }
+
+  void onAction(HomeAction action) async {
+    switch (action) {
+      case OnSelectCategory():
+        _onSelectCategory(action.category);
+    }
+  }
+
+  void _onSelectCategory(String category) async {
+    _state = state.copyWith(selectedCategory: category);
+    notifyListeners();
+
+    await _fetchDishesByCategory(category);
   }
 }

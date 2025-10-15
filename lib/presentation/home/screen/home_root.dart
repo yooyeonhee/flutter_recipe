@@ -1,11 +1,11 @@
 import 'dart:async';
 import 'dart:developer';
-
 import 'package:flutter/material.dart';
 import 'package:flutter/widgets.dart';
 import 'package:go_router/go_router.dart';
 import 'package:recipe_flutter/core/di/di_setup.dart';
 import 'package:recipe_flutter/core/routing/route_paths.dart';
+import 'package:recipe_flutter/presentation/home/home_action.dart';
 import 'package:recipe_flutter/presentation/home/home_view_model.dart';
 import 'package:recipe_flutter/presentation/home/screen/home_screen.dart';
 
@@ -47,10 +47,12 @@ class _HomeRootState extends State<HomeRoot> {
       builder: (context, widget) {
         return HomeScreen(
           state: viewModel.state,
-          name: 'jaga',
-          onTapSearchField: () => context.push(RoutePaths.search),
-          onSelectCategory: (String category) {
-            viewModel.onSelectCategory(category);
+          onAction: (HomeAction action) {
+            if (action is OnTapSearchField) {
+              context.push(RoutePaths.search);
+              return;
+            }
+            viewModel.onAction(action);
           },
         );
       },
