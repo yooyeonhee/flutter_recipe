@@ -1,33 +1,16 @@
-// Ingredient 모델 클래스
-class Ingredient {
-  final int id;
-  final String name;
-  final String image;
+import 'package:freezed_annotation/freezed_annotation.dart';
 
-  Ingredient({
-    required this.id,
-    required this.name,
-    required this.image,
-  });
+part 'ingredient.freezed.dart';
+part 'ingredient.g.dart';
 
-  factory Ingredient.fromJson(Map<String, dynamic> json) {
-    return Ingredient(
-      id: json['id'],
-      name: json['name'],
-      image: json['image'],
-    );
-  }
+@freezed
+class Ingredient with _$Ingredient {
+  const factory Ingredient({
+    required int id,
+    required final String name,
+    required final String image,
+  }) = _Ingredient;
 
-  Map<String, dynamic> toJson() {
-    return {
-      'id': id,
-      'name': name,
-      'image': image,
-    };
-  }
-
-  @override
-  String toString() {
-    return 'Ingredient(id: $id, name: $name)';
-  }
+  factory Ingredient.fromJson(Map<String, dynamic> json) =>
+      _$IngredientFromJson(json);
 }

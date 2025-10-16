@@ -3,6 +3,7 @@ import 'package:recipe_flutter/core/presentation/components/dish_card.dart';
 import 'package:recipe_flutter/core/presentation/components/new_recipe_card.dart';
 import 'package:recipe_flutter/core/presentation/components/recipe_category_selector.dart';
 import 'package:recipe_flutter/core/presentation/components/search_input_field.dart';
+import 'package:recipe_flutter/domain/model/recipe.dart';
 import 'package:recipe_flutter/presentation/home/home_action.dart';
 import 'package:recipe_flutter/presentation/home/home_state.dart';
 import 'package:recipe_flutter/ui/text_styles.dart';
@@ -38,7 +39,7 @@ class HomeScreen extends StatelessWidget {
                         crossAxisAlignment: CrossAxisAlignment.start,
                         children: [
                           Text(
-                            'Hello $state.name',
+                            'Hello ${state.name}',
                             style: TextStyles.largeTextBold,
                           ),
                           const SizedBox(
@@ -126,7 +127,9 @@ class HomeScreen extends StatelessWidget {
                             padding: const EdgeInsets.only(right: 15),
                             child: DishCard(
                               recipe: e,
-                              isFavorite: true,
+                              onTapFavorite: (Recipe recipe) {
+                                onAction(HomeAction.onTapFavorite(recipe));
+                              },
                             ),
                           ))
                       .toList(),
