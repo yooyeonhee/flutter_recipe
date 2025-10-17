@@ -17,6 +17,7 @@ class HomeViewModel with ChangeNotifier {
   final GetDishesByCategoryUseCase _getDishesByCategoryUseCase;
   final GetNewRecipesUseCase _getNewRecipesUseCase;
   final ToggleBookmarkRecipeUseCase _toggleBookmarkRecipeUseCase;
+  StreamSubscription? _streamSubscription;
 
   final _eventController = StreamController<NetworkError>();
 
@@ -65,9 +66,11 @@ class HomeViewModel with ChangeNotifier {
   }
 
   Future<void> _fetchDishesByCategory(String category) async {
-    final dishes = await _getDishesByCategoryUseCase.execute(category);
-    _state = state.copyWith(dishes: dishes);
-    notifyListeners();
+    _streamSubscription =
+        _getDishesByCategoryUseCase.execute(category).listen((dishes) {
+      _state = state.copyWith(dishes: dishes);
+      notifyListeners();
+    });
   }
 
   Future<void> _fetchNewRecipes() async {
@@ -117,5 +120,11 @@ class HomeViewModel with ChangeNotifier {
     notifyListeners();
 
     await _fetchDishesByCategory(category);
+  }
+
+  @override
+  void dispose() {
+    _streamSubscription?.cancel();
+    super.dispose();
   }
 }

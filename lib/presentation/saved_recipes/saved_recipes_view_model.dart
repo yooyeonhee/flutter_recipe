@@ -1,9 +1,15 @@
+import 'dart:async';
+
 import 'package:flutter/material.dart';
 import 'package:recipe_flutter/domain/use_case/get_saved_recipes_use_case.dart';
+import 'package:recipe_flutter/domain/use_case/toggle_bookmark_recipe_use_case.dart';
+import 'package:recipe_flutter/presentation/saved_recipes/saved_recipes_action.dart';
 import 'package:recipe_flutter/presentation/saved_recipes/saved_recipes_state.dart';
 
 class SavedRecipesViewModel with ChangeNotifier {
   final GetSavedRecipesUseCase _getSavedRecipesUseCase;
+  final ToggleBookmarkRecipeUseCase _toggleBookmarkRecipeUseCase;
+  StreamSubscription? _streamSubscription;
 
   SavedRecipesState _state = SavedRecipesState();
 
@@ -11,19 +17,30 @@ class SavedRecipesViewModel with ChangeNotifier {
 
   SavedRecipesViewModel({
     required GetSavedRecipesUseCase getSavedRecipesUseCase,
-  }) : _getSavedRecipesUseCase = getSavedRecipesUseCase {
-    _loadRecipeData();
+    required ToggleBookmarkRecipeUseCase toggleBookmarkRecipeUseCase,
+  })  : _getSavedRecipesUseCase = getSavedRecipesUseCase,
+        _toggleBookmarkRecipeUseCase = toggleBookmarkRecipeUseCase {
+    _streamSubscription = _getSavedRecipesUseCase.execute().listen((recipes) {
+      _state = state.copyWith(recipes: recipes);
+      notifyListeners();
+    });
   }
 
-  void _loadRecipeData() async {
-    _state = state.copyWith(isLoading: true);
-    notifyListeners();
+  void _onTapFavorite(int recipeId) async {
+    await _toggleBookmarkRecipeUseCase.execute(recipeId);
+  }
 
-    _state = state.copyWith(
-      recipes: await _getSavedRecipesUseCase.execute(),
-      isLoading: false,
-    );
+  void onAction(SavedRecipesAction action) async {
+    switch (action) {
+      case OnTapFavorite():
+        _onTapFavorite(action.recipe.id);
+      case OnTapRecipe():
+    }
+  }
 
-    notifyListeners();
+  @override
+  void dispose() {
+    _streamSubscription?.cancel();
+    super.dispose();
   }
 }

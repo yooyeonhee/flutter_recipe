@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:recipe_flutter/core/di/di_setup.dart';
+import 'package:recipe_flutter/presentation/saved_recipes/saved_recipes_action.dart';
 import 'package:recipe_flutter/presentation/saved_recipes/saved_recipes_view_model.dart';
 import 'package:recipe_flutter/presentation/saved_recipes/screen/saved_recipes_screen.dart';
 
@@ -19,7 +20,8 @@ class SavedRecipesRoot extends StatelessWidget {
               child: CircularProgressIndicator(),
             );
           }
-          return SavedRecipesScreen(recipes: state.recipes);
+          return SavedRecipesScreen(
+              recipes: state.recipes, onAction: viewModel.onAction);
         });
   }
 }

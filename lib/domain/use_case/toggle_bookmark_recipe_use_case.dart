@@ -18,11 +18,10 @@ class ToggleBookmarkRecipeUseCase {
     try {
       final recipe = await _recipeRepository.getRecipe(recipeId);
       if (recipe == null) {
-        return const ResultError(BookmarkError.notFound);
+        return const Result.error(BookmarkError.notFound);
       }
       await _bookmarkRepository.bookmarkToggle(recipeId);
       final recipes = await _recipeRepository.getRecipes();
-
       final ids = await _bookmarkRepository.getBookmarkIds();
 
       return Result.success(recipes.map((e) {

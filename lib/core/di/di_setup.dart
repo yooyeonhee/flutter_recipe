@@ -71,6 +71,7 @@ void diSetup() {
   getIt.registerCachedFactory(
     () => SavedRecipesViewModel(
       getSavedRecipesUseCase: getIt(),
+      toggleBookmarkRecipeUseCase: getIt(),
     ),
   );
   getIt.registerFactory<SearchViewModel>(
