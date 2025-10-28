@@ -1,4 +1,4 @@
-import 'package:flutter/widgets.dart';
+import 'package:flutter/material.dart';
 import 'package:recipe_flutter/core/di/di_setup.dart';
 import 'package:recipe_flutter/presentation/ingredient/ingredient_action.dart';
 import 'package:recipe_flutter/presentation/ingredient/ingredient_view_model.dart';
@@ -17,12 +17,15 @@ class IngredientRoot extends StatelessWidget {
     viewModel.onAction(IngredientAction.loadRecipe(recipeId));
 
     return ListenableBuilder(
-        listenable: viewModel,
-        builder: (context, widget) {
-          return IngredientScreen(
-            state: viewModel.state,
-            onAction: viewModel.onAction,
-          );
-        });
+      listenable: viewModel,
+      builder: (context, widget) {
+        return viewModel.state.recipe == null
+            ? const Center(child: CircularProgressIndicator())
+            : IngredientScreen(
+                state: viewModel.state,
+                onAction: viewModel.onAction,
+              );
+      },
+    );
   }
 }

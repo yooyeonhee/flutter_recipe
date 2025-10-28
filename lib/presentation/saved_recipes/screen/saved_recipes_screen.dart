@@ -25,7 +25,7 @@ class SavedRecipesScreen extends StatelessWidget {
         ),
       ),
       body: Padding(
-        padding: const EdgeInsets.symmetric(horizontal: 10),
+        padding: const EdgeInsets.symmetric(horizontal: 30),
         child: ListView.builder(
           itemCount: recipes.length,
           itemBuilder: (context, index) {

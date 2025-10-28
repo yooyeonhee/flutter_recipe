@@ -21,6 +21,7 @@ IngredientState _$IngredientStateFromJson(Map<String, dynamic> json) {
 /// @nodoc
 mixin _$IngredientState {
   Recipe? get recipe => throw _privateConstructorUsedError;
+  ChefProfile? get chefProfile => throw _privateConstructorUsedError;
   List<Ingredient> get ingredients => throw _privateConstructorUsedError;
   List<Procedure> get procedures => throw _privateConstructorUsedError;
 
@@ -42,10 +43,12 @@ abstract class $IngredientStateCopyWith<$Res> {
   @useResult
   $Res call(
       {Recipe? recipe,
+      ChefProfile? chefProfile,
       List<Ingredient> ingredients,
       List<Procedure> procedures});
 
   $RecipeCopyWith<$Res>? get recipe;
+  $ChefProfileCopyWith<$Res>? get chefProfile;
 }
 
 /// @nodoc
@@ -64,6 +67,7 @@ class _$IngredientStateCopyWithImpl<$Res, $Val extends IngredientState>
   @override
   $Res call({
     Object? recipe = freezed,
+    Object? chefProfile = freezed,
     Object? ingredients = null,
     Object? procedures = null,
   }) {
@@ -72,6 +76,10 @@ class _$IngredientStateCopyWithImpl<$Res, $Val extends IngredientState>
           ? _value.recipe
           : recipe // ignore: cast_nullable_to_non_nullable
               as Recipe?,
+      chefProfile: freezed == chefProfile
+          ? _value.chefProfile
+          : chefProfile // ignore: cast_nullable_to_non_nullable
+              as ChefProfile?,
       ingredients: null == ingredients
           ? _value.ingredients
           : ingredients // ignore: cast_nullable_to_non_nullable
@@ -96,6 +104,20 @@ class _$IngredientStateCopyWithImpl<$Res, $Val extends IngredientState>
       return _then(_value.copyWith(recipe: value) as $Val);
     });
   }
+
+  /// Create a copy of IngredientState
+  /// with the given fields replaced by the non-null parameter values.
+  @override
+  @pragma('vm:prefer-inline')
+  $ChefProfileCopyWith<$Res>? get chefProfile {
+    if (_value.chefProfile == null) {
+      return null;
+    }
+
+    return $ChefProfileCopyWith<$Res>(_value.chefProfile!, (value) {
+      return _then(_value.copyWith(chefProfile: value) as $Val);
+    });
+  }
 }
 
 /// @nodoc
@@ -108,11 +130,14 @@ abstract class _$$IngredientStateImplCopyWith<$Res>
   @useResult
   $Res call(
       {Recipe? recipe,
+      ChefProfile? chefProfile,
       List<Ingredient> ingredients,
       List<Procedure> procedures});
 
   @override
   $RecipeCopyWith<$Res>? get recipe;
+  @override
+  $ChefProfileCopyWith<$Res>? get chefProfile;
 }
 
 /// @nodoc
@@ -129,6 +154,7 @@ class __$$IngredientStateImplCopyWithImpl<$Res>
   @override
   $Res call({
     Object? recipe = freezed,
+    Object? chefProfile = freezed,
     Object? ingredients = null,
     Object? procedures = null,
   }) {
@@ -137,6 +163,10 @@ class __$$IngredientStateImplCopyWithImpl<$Res>
           ? _value.recipe
           : recipe // ignore: cast_nullable_to_non_nullable
               as Recipe?,
+      chefProfile: freezed == chefProfile
+          ? _value.chefProfile
+          : chefProfile // ignore: cast_nullable_to_non_nullable
+              as ChefProfile?,
       ingredients: null == ingredients
           ? _value._ingredients
           : ingredients // ignore: cast_nullable_to_non_nullable
@@ -154,6 +184,7 @@ class __$$IngredientStateImplCopyWithImpl<$Res>
 class _$IngredientStateImpl implements _IngredientState {
   const _$IngredientStateImpl(
       {this.recipe,
+      this.chefProfile,
       final List<Ingredient> ingredients = const [],
       final List<Procedure> procedures = const []})
       : _ingredients = ingredients,
@@ -164,6 +195,8 @@ class _$IngredientStateImpl implements _IngredientState {
 
   @override
   final Recipe? recipe;
+  @override
+  final ChefProfile? chefProfile;
   final List<Ingredient> _ingredients;
   @override
   @JsonKey()
@@ -184,7 +217,7 @@ class _$IngredientStateImpl implements _IngredientState {
 
   @override
   String toString() {
-    return 'IngredientState(recipe: $recipe, ingredients: $ingredients, procedures: $procedures)';
+    return 'IngredientState(recipe: $recipe, chefProfile: $chefProfile, ingredients: $ingredients, procedures: $procedures)';
   }
 
   @override
@@ -193,6 +226,8 @@ class _$IngredientStateImpl implements _IngredientState {
         (other.runtimeType == runtimeType &&
             other is _$IngredientStateImpl &&
             (identical(other.recipe, recipe) || other.recipe == recipe) &&
+            (identical(other.chefProfile, chefProfile) ||
+                other.chefProfile == chefProfile) &&
             const DeepCollectionEquality()
                 .equals(other._ingredients, _ingredients) &&
             const DeepCollectionEquality()
@@ -204,6 +239,7 @@ class _$IngredientStateImpl implements _IngredientState {
   int get hashCode => Object.hash(
       runtimeType,
       recipe,
+      chefProfile,
       const DeepCollectionEquality().hash(_ingredients),
       const DeepCollectionEquality().hash(_procedures));
 
@@ -227,6 +263,7 @@ class _$IngredientStateImpl implements _IngredientState {
 abstract class _IngredientState implements IngredientState {
   const factory _IngredientState(
       {final Recipe? recipe,
+      final ChefProfile? chefProfile,
       final List<Ingredient> ingredients,
       final List<Procedure> procedures}) = _$IngredientStateImpl;
 
@@ -235,6 +272,8 @@ abstract class _IngredientState implements IngredientState {
 
   @override
   Recipe? get recipe;
+  @override
+  ChefProfile? get chefProfile;
   @override
   List<Ingredient> get ingredients;
   @override

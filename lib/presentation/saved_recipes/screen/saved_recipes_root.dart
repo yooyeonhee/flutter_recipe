@@ -1,7 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:go_router/go_router.dart';
 import 'package:recipe_flutter/core/di/di_setup.dart';
-import 'package:recipe_flutter/core/routing/route_paths.dart';
 import 'package:recipe_flutter/presentation/saved_recipes/saved_recipes_action.dart';
 import 'package:recipe_flutter/presentation/saved_recipes/saved_recipes_view_model.dart';
 import 'package:recipe_flutter/presentation/saved_recipes/screen/saved_recipes_screen.dart';

@@ -2,6 +2,7 @@ import 'package:get_it/get_it.dart';
 import 'package:recipe_flutter/data/data_source/local/default_local_storage.dart';
 import 'package:recipe_flutter/data/data_source/remote/remote_recipe_data_source_impl.dart';
 import 'package:recipe_flutter/data/repository/mock_bookmark_repository_impl.dart';
+import 'package:recipe_flutter/data/repository/mock_chef_profile_repository_impl.dart';
 import 'package:recipe_flutter/data/repository/mock_ingredient_repository_impl.dart';
 import 'package:recipe_flutter/data/repository/mock_procedure_repository_impl.dart';
 import 'package:recipe_flutter/data/repository/mock_recent_search_recipe_repository_impl.dart';
@@ -9,6 +10,7 @@ import 'package:recipe_flutter/data/repository/mock_recipe_repository_impl.dart'
 import 'package:recipe_flutter/domain/data_source/local_storage.dart';
 import 'package:recipe_flutter/domain/data_source/recipe_data_source.dart';
 import 'package:recipe_flutter/domain/repository/bookmark_repository.dart';
+import 'package:recipe_flutter/domain/repository/chef_profile_repository.dart';
 import 'package:recipe_flutter/domain/repository/ingredient_repository.dart';
 import 'package:recipe_flutter/domain/repository/procedure_repository.dart';
 import 'package:recipe_flutter/domain/repository/recent_search_recipe_repository.dart';
@@ -52,6 +54,9 @@ void diSetup() {
   );
   getIt.registerSingleton<ProcedureRepository>(
     MockProcedureRepositoryImpl(),
+  );
+  getIt.registerSingleton<ChefProfileRepository>(
+    MockChefProfileRepositoryImpl(),
   );
 
   // UseCase
@@ -103,6 +108,7 @@ void diSetup() {
     () => IngredientViewModel(
       ingredientRepository: getIt(),
       procedureRepository: getIt(),
+      chefProfileRepository: getIt(),
       getDishesByCategoryUseCase: getIt(),
     ),
   );
