@@ -1,6 +1,7 @@
 import 'package:go_router/go_router.dart';
 import 'package:recipe_flutter/core/routing/route_paths.dart';
 import 'package:recipe_flutter/presentation/home/screen/home_root.dart';
+import 'package:recipe_flutter/presentation/ingredient/screen/ingredient_root.dart';
 import 'package:recipe_flutter/presentation/main/main_screen.dart';
 import 'package:recipe_flutter/presentation/notifications/notifications_screen.dart';
 import 'package:recipe_flutter/presentation/profile/profile_screen.dart';
@@ -43,8 +44,16 @@ final router = GoRouter(
 
     //네비게이션 바를 삭제하기 위해 최상단에 구현
     GoRoute(
-        path: RoutePaths.search,
-        builder: (context, state) => const SearchRoot()),
+      path: RoutePaths.search,
+      builder: (context, state) => const SearchRoot(),
+    ),
+    GoRoute(
+      path: RoutePaths.ingredient,
+      builder: (context, state) {
+        final recipeId = int.parse(state.pathParameters['recipeId']!);
+        return IngredientRoot(recipeId: recipeId);
+      },
+    ),
     StatefulShellRoute.indexedStack(
       builder: (context, state, navigationShell) {
         return MainScreen(
