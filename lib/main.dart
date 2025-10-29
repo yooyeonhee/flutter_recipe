@@ -8,6 +8,7 @@ import 'package:recipe_flutter/core/presentation/components/rating_button.dart';
 import 'package:recipe_flutter/core/presentation/components/small_button.dart';
 import 'package:recipe_flutter/core/presentation/dialogs/rating_dialog.dart';
 import 'package:recipe_flutter/core/routing/router.dart';
+import 'package:recipe_flutter/ui/color_styles.dart';
 import 'package:recipe_flutter/ui/text_styles.dart';
 
 void main() {
@@ -44,6 +45,8 @@ class MyHomePage extends StatelessWidget {
           'Component',
           style: TextStyles.largeTextBold,
         ),
+        backgroundColor: ColorStyles.white,
+        surfaceTintColor: ColorStyles.white,
       ),
       body: ListView(
         children: [

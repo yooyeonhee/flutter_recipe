@@ -25,6 +25,8 @@ class SearchScreen extends StatelessWidget {
           "Search recipes",
           style: TextStyles.mediumTextBold,
         ),
+        backgroundColor: ColorStyles.white,
+        surfaceTintColor: ColorStyles.white,
         centerTitle: true,
       ),
       body: Padding(

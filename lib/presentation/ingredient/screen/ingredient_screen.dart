@@ -24,7 +24,10 @@ class IngredientScreen extends StatelessWidget {
   Widget build(BuildContext context) {
     logger.d(state.chefProfile);
     return Scaffold(
-      appBar: AppBar(),
+      appBar: AppBar(
+        backgroundColor: ColorStyles.white,
+        surfaceTintColor: ColorStyles.white,
+      ),
       body: SafeArea(
         child: Padding(
           padding: const EdgeInsets.symmetric(horizontal: 30),
