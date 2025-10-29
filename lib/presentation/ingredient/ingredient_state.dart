@@ -14,6 +14,7 @@ class IngredientState with _$IngredientState {
     ChefProfile? chefProfile,
     @Default([]) List<Ingredient> ingredients,
     @Default([]) List<Procedure> procedures,
+    @Default('Ingredient') String selectedTabValue,
   }) = _IngredientState;
 
   factory IngredientState.fromJson(Map<String, dynamic> json) =>

@@ -32,7 +32,11 @@ class IngredientViewModel with ChangeNotifier {
         _loadRecipe(action.recipeId);
       case OnTapFavorite():
       case OnTapIngredient():
+        _state = state.copyWith(selectedTabValue: 'Ingredient');
+        notifyListeners();
       case OnTapProcedure():
+        _state = state.copyWith(selectedTabValue: 'Procedure');
+        notifyListeners();
       case OnTapFollow():
     }
   }

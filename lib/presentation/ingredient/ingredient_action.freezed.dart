@@ -19,8 +19,8 @@ mixin _$IngredientAction {
   @optionalTypeArgs
   TResult when<TResult extends Object?>({
     required TResult Function(Recipe recipe) onTapFavorite,
-    required TResult Function(Recipe recipe) onTapIngredient,
-    required TResult Function(int recipeId) onTapProcedure,
+    required TResult Function() onTapIngredient,
+    required TResult Function() onTapProcedure,
     required TResult Function(Recipe recipe) onTapFollow,
     required TResult Function(int recipeId) loadRecipe,
   }) =>
@@ -28,8 +28,8 @@ mixin _$IngredientAction {
   @optionalTypeArgs
   TResult? whenOrNull<TResult extends Object?>({
     TResult? Function(Recipe recipe)? onTapFavorite,
-    TResult? Function(Recipe recipe)? onTapIngredient,
-    TResult? Function(int recipeId)? onTapProcedure,
+    TResult? Function()? onTapIngredient,
+    TResult? Function()? onTapProcedure,
     TResult? Function(Recipe recipe)? onTapFollow,
     TResult? Function(int recipeId)? loadRecipe,
   }) =>
@@ -37,8 +37,8 @@ mixin _$IngredientAction {
   @optionalTypeArgs
   TResult maybeWhen<TResult extends Object?>({
     TResult Function(Recipe recipe)? onTapFavorite,
-    TResult Function(Recipe recipe)? onTapIngredient,
-    TResult Function(int recipeId)? onTapProcedure,
+    TResult Function()? onTapIngredient,
+    TResult Function()? onTapProcedure,
     TResult Function(Recipe recipe)? onTapFollow,
     TResult Function(int recipeId)? loadRecipe,
     required TResult orElse(),
@@ -176,8 +176,8 @@ class _$OnTapFavoriteImpl implements OnTapFavorite {
   @optionalTypeArgs
   TResult when<TResult extends Object?>({
     required TResult Function(Recipe recipe) onTapFavorite,
-    required TResult Function(Recipe recipe) onTapIngredient,
-    required TResult Function(int recipeId) onTapProcedure,
+    required TResult Function() onTapIngredient,
+    required TResult Function() onTapProcedure,
     required TResult Function(Recipe recipe) onTapFollow,
     required TResult Function(int recipeId) loadRecipe,
   }) {
@@ -188,8 +188,8 @@ class _$OnTapFavoriteImpl implements OnTapFavorite {
   @optionalTypeArgs
   TResult? whenOrNull<TResult extends Object?>({
     TResult? Function(Recipe recipe)? onTapFavorite,
-    TResult? Function(Recipe recipe)? onTapIngredient,
-    TResult? Function(int recipeId)? onTapProcedure,
+    TResult? Function()? onTapIngredient,
+    TResult? Function()? onTapProcedure,
     TResult? Function(Recipe recipe)? onTapFollow,
     TResult? Function(int recipeId)? loadRecipe,
   }) {
@@ -200,8 +200,8 @@ class _$OnTapFavoriteImpl implements OnTapFavorite {
   @optionalTypeArgs
   TResult maybeWhen<TResult extends Object?>({
     TResult Function(Recipe recipe)? onTapFavorite,
-    TResult Function(Recipe recipe)? onTapIngredient,
-    TResult Function(int recipeId)? onTapProcedure,
+    TResult Function()? onTapIngredient,
+    TResult Function()? onTapProcedure,
     TResult Function(Recipe recipe)? onTapFollow,
     TResult Function(int recipeId)? loadRecipe,
     required TResult orElse(),
@@ -270,10 +270,6 @@ abstract class _$$OnTapIngredientImplCopyWith<$Res> {
   factory _$$OnTapIngredientImplCopyWith(_$OnTapIngredientImpl value,
           $Res Function(_$OnTapIngredientImpl) then) =
       __$$OnTapIngredientImplCopyWithImpl<$Res>;
-  @useResult
-  $Res call({Recipe recipe});
-
-  $RecipeCopyWith<$Res> get recipe;
 }
 
 /// @nodoc
@@ -286,99 +282,63 @@ class __$$OnTapIngredientImplCopyWithImpl<$Res>
 
   /// Create a copy of IngredientAction
   /// with the given fields replaced by the non-null parameter values.
-  @pragma('vm:prefer-inline')
-  @override
-  $Res call({
-    Object? recipe = null,
-  }) {
-    return _then(_$OnTapIngredientImpl(
-      null == recipe
-          ? _value.recipe
-          : recipe // ignore: cast_nullable_to_non_nullable
-              as Recipe,
-    ));
-  }
-
-  /// Create a copy of IngredientAction
-  /// with the given fields replaced by the non-null parameter values.
-  @override
-  @pragma('vm:prefer-inline')
-  $RecipeCopyWith<$Res> get recipe {
-    return $RecipeCopyWith<$Res>(_value.recipe, (value) {
-      return _then(_value.copyWith(recipe: value));
-    });
-  }
 }
 
 /// @nodoc
 
 class _$OnTapIngredientImpl implements OnTapIngredient {
-  const _$OnTapIngredientImpl(this.recipe);
-
-  @override
-  final Recipe recipe;
+  const _$OnTapIngredientImpl();
 
   @override
   String toString() {
-    return 'IngredientAction.onTapIngredient(recipe: $recipe)';
+    return 'IngredientAction.onTapIngredient()';
   }
 
   @override
   bool operator ==(Object other) {
     return identical(this, other) ||
-        (other.runtimeType == runtimeType &&
-            other is _$OnTapIngredientImpl &&
-            (identical(other.recipe, recipe) || other.recipe == recipe));
+        (other.runtimeType == runtimeType && other is _$OnTapIngredientImpl);
   }
 
   @override
-  int get hashCode => Object.hash(runtimeType, recipe);
-
-  /// Create a copy of IngredientAction
-  /// with the given fields replaced by the non-null parameter values.
-  @JsonKey(includeFromJson: false, includeToJson: false)
-  @override
-  @pragma('vm:prefer-inline')
-  _$$OnTapIngredientImplCopyWith<_$OnTapIngredientImpl> get copyWith =>
-      __$$OnTapIngredientImplCopyWithImpl<_$OnTapIngredientImpl>(
-          this, _$identity);
+  int get hashCode => runtimeType.hashCode;
 
   @override
   @optionalTypeArgs
   TResult when<TResult extends Object?>({
     required TResult Function(Recipe recipe) onTapFavorite,
-    required TResult Function(Recipe recipe) onTapIngredient,
-    required TResult Function(int recipeId) onTapProcedure,
+    required TResult Function() onTapIngredient,
+    required TResult Function() onTapProcedure,
     required TResult Function(Recipe recipe) onTapFollow,
     required TResult Function(int recipeId) loadRecipe,
   }) {
-    return onTapIngredient(recipe);
+    return onTapIngredient();
   }
 
   @override
   @optionalTypeArgs
   TResult? whenOrNull<TResult extends Object?>({
     TResult? Function(Recipe recipe)? onTapFavorite,
-    TResult? Function(Recipe recipe)? onTapIngredient,
-    TResult? Function(int recipeId)? onTapProcedure,
+    TResult? Function()? onTapIngredient,
+    TResult? Function()? onTapProcedure,
     TResult? Function(Recipe recipe)? onTapFollow,
     TResult? Function(int recipeId)? loadRecipe,
   }) {
-    return onTapIngredient?.call(recipe);
+    return onTapIngredient?.call();
   }
 
   @override
   @optionalTypeArgs
   TResult maybeWhen<TResult extends Object?>({
     TResult Function(Recipe recipe)? onTapFavorite,
-    TResult Function(Recipe recipe)? onTapIngredient,
-    TResult Function(int recipeId)? onTapProcedure,
+    TResult Function()? onTapIngredient,
+    TResult Function()? onTapProcedure,
     TResult Function(Recipe recipe)? onTapFollow,
     TResult Function(int recipeId)? loadRecipe,
     required TResult orElse(),
   }) {
     if (onTapIngredient != null) {
-      return onTapIngredient(recipe);
+      return onTapIngredient();
     }
     return orElse();
   }
@@ -425,15 +385,7 @@ class _$OnTapIngredientImpl implements OnTapIngredient {
 }
 
 abstract class OnTapIngredient implements IngredientAction {
-  const factory OnTapIngredient(final Recipe recipe) = _$OnTapIngredientImpl;
-
-  Recipe get recipe;
-
-  /// Create a copy of IngredientAction
-  /// with the given fields replaced by the non-null parameter values.
-  @JsonKey(includeFromJson: false, includeToJson: false)
-  _$$OnTapIngredientImplCopyWith<_$OnTapIngredientImpl> get copyWith =>
-      throw _privateConstructorUsedError;
+  const factory OnTapIngredient() = _$OnTapIngredientImpl;
 }
 
 /// @nodoc
@@ -441,8 +393,6 @@ abstract class _$$OnTapProcedureImplCopyWith<$Res> {
   factory _$$OnTapProcedureImplCopyWith(_$OnTapProcedureImpl value,
           $Res Function(_$OnTapProcedureImpl) then) =
       __$$OnTapProcedureImplCopyWithImpl<$Res>;
-  @useResult
-  $Res call({int recipeId});
 }
 
 /// @nodoc
@@ -455,90 +405,63 @@ class __$$OnTapProcedureImplCopyWithImpl<$Res>
 
   /// Create a copy of IngredientAction
   /// with the given fields replaced by the non-null parameter values.
-  @pragma('vm:prefer-inline')
-  @override
-  $Res call({
-    Object? recipeId = null,
-  }) {
-    return _then(_$OnTapProcedureImpl(
-      null == recipeId
-          ? _value.recipeId
-          : recipeId // ignore: cast_nullable_to_non_nullable
-              as int,
-    ));
-  }
 }
 
 /// @nodoc
 
 class _$OnTapProcedureImpl implements OnTapProcedure {
-  const _$OnTapProcedureImpl(this.recipeId);
-
-  @override
-  final int recipeId;
+  const _$OnTapProcedureImpl();
 
   @override
   String toString() {
-    return 'IngredientAction.onTapProcedure(recipeId: $recipeId)';
+    return 'IngredientAction.onTapProcedure()';
   }
 
   @override
   bool operator ==(Object other) {
     return identical(this, other) ||
-        (other.runtimeType == runtimeType &&
-            other is _$OnTapProcedureImpl &&
-            (identical(other.recipeId, recipeId) ||
-                other.recipeId == recipeId));
+        (other.runtimeType == runtimeType && other is _$OnTapProcedureImpl);
   }
 
   @override
-  int get hashCode => Object.hash(runtimeType, recipeId);
-
-  /// Create a copy of IngredientAction
-  /// with the given fields replaced by the non-null parameter values.
-  @JsonKey(includeFromJson: false, includeToJson: false)
-  @override
-  @pragma('vm:prefer-inline')
-  _$$OnTapProcedureImplCopyWith<_$OnTapProcedureImpl> get copyWith =>
-      __$$OnTapProcedureImplCopyWithImpl<_$OnTapProcedureImpl>(
-          this, _$identity);
+  int get hashCode => runtimeType.hashCode;
 
   @override
   @optionalTypeArgs
   TResult when<TResult extends Object?>({
     required TResult Function(Recipe recipe) onTapFavorite,
-    required TResult Function(Recipe recipe) onTapIngredient,
-    required TResult Function(int recipeId) onTapProcedure,
+    required TResult Function() onTapIngredient,
+    required TResult Function() onTapProcedure,
     required TResult Function(Recipe recipe) onTapFollow,
     required TResult Function(int recipeId) loadRecipe,
   }) {
-    return onTapProcedure(recipeId);
+    return onTapProcedure();
   }
 
   @override
   @optionalTypeArgs
   TResult? whenOrNull<TResult extends Object?>({
     TResult? Function(Recipe recipe)? onTapFavorite,
-    TResult? Function(Recipe recipe)? onTapIngredient,
-    TResult? Function(int recipeId)? onTapProcedure,
+    TResult? Function()? onTapIngredient,
+    TResult? Function()? onTapProcedure,
     TResult? Function(Recipe recipe)? onTapFollow,
     TResult? Function(int recipeId)? loadRecipe,
   }) {
-    return onTapProcedure?.call(recipeId);
+    return onTapProcedure?.call();
   }
 
   @override
   @optionalTypeArgs
   TResult maybeWhen<TResult extends Object?>({
     TResult Function(Recipe recipe)? onTapFavorite,
-    TResult Function(Recipe recipe)? onTapIngredient,
-    TResult Function(int recipeId)? onTapProcedure,
+    TResult Function()? onTapIngredient,
+    TResult Function()? onTapProcedure,
     TResult Function(Recipe recipe)? onTapFollow,
     TResult Function(int recipeId)? loadRecipe,
     required TResult orElse(),
   }) {
     if (onTapProcedure != null) {
-      return onTapProcedure(recipeId);
+      return onTapProcedure();
     }
     return orElse();
   }
@@ -585,15 +508,7 @@ class _$OnTapProcedureImpl implements OnTapProcedure {
 }
 
 abstract class OnTapProcedure implements IngredientAction {
-  const factory OnTapProcedure(final int recipeId) = _$OnTapProcedureImpl;
-
-  int get recipeId;
-
-  /// Create a copy of IngredientAction
-  /// with the given fields replaced by the non-null parameter values.
-  @JsonKey(includeFromJson: false, includeToJson: false)
-  _$$OnTapProcedureImplCopyWith<_$OnTapProcedureImpl> get copyWith =>
-      throw _privateConstructorUsedError;
+  const factory OnTapProcedure() = _$OnTapProcedureImpl;
 }
 
 /// @nodoc
@@ -677,8 +592,8 @@ class _$OnTapFollowImpl implements OnTapFollow {
   @optionalTypeArgs
   TResult when<TResult extends Object?>({
     required TResult Function(Recipe recipe) onTapFavorite,
-    required TResult Function(Recipe recipe) onTapIngredient,
-    required TResult Function(int recipeId) onTapProcedure,
+    required TResult Function() onTapIngredient,
+    required TResult Function() onTapProcedure,
     required TResult Function(Recipe recipe) onTapFollow,
     required TResult Function(int recipeId) loadRecipe,
   }) {
@@ -689,8 +604,8 @@ class _$OnTapFollowImpl implements OnTapFollow {
   @optionalTypeArgs
   TResult? whenOrNull<TResult extends Object?>({
     TResult? Function(Recipe recipe)? onTapFavorite,
-    TResult? Function(Recipe recipe)? onTapIngredient,
-    TResult? Function(int recipeId)? onTapProcedure,
+    TResult? Function()? onTapIngredient,
+    TResult? Function()? onTapProcedure,
     TResult? Function(Recipe recipe)? onTapFollow,
     TResult? Function(int recipeId)? loadRecipe,
   }) {
@@ -701,8 +616,8 @@ class _$OnTapFollowImpl implements OnTapFollow {
   @optionalTypeArgs
   TResult maybeWhen<TResult extends Object?>({
     TResult Function(Recipe recipe)? onTapFavorite,
-    TResult Function(Recipe recipe)? onTapIngredient,
-    TResult Function(int recipeId)? onTapProcedure,
+    TResult Function()? onTapIngredient,
+    TResult Function()? onTapProcedure,
     TResult Function(Recipe recipe)? onTapFollow,
     TResult Function(int recipeId)? loadRecipe,
     required TResult orElse(),
@@ -836,8 +751,8 @@ class _$LoadRecipeImpl implements LoadRecipe {
   @optionalTypeArgs
   TResult when<TResult extends Object?>({
     required TResult Function(Recipe recipe) onTapFavorite,
-    required TResult Function(Recipe recipe) onTapIngredient,
-    required TResult Function(int recipeId) onTapProcedure,
+    required TResult Function() onTapIngredient,
+    required TResult Function() onTapProcedure,
     required TResult Function(Recipe recipe) onTapFollow,
     required TResult Function(int recipeId) loadRecipe,
   }) {
@@ -848,8 +763,8 @@ class _$LoadRecipeImpl implements LoadRecipe {
   @optionalTypeArgs
   TResult? whenOrNull<TResult extends Object?>({
     TResult? Function(Recipe recipe)? onTapFavorite,
-    TResult? Function(Recipe recipe)? onTapIngredient,
-    TResult? Function(int recipeId)? onTapProcedure,
+    TResult? Function()? onTapIngredient,
+    TResult? Function()? onTapProcedure,
     TResult? Function(Recipe recipe)? onTapFollow,
     TResult? Function(int recipeId)? loadRecipe,
   }) {
@@ -860,8 +775,8 @@ class _$LoadRecipeImpl implements LoadRecipe {
   @optionalTypeArgs
   TResult maybeWhen<TResult extends Object?>({
     TResult Function(Recipe recipe)? onTapFavorite,
-    TResult Function(Recipe recipe)? onTapIngredient,
-    TResult Function(int recipeId)? onTapProcedure,
+    TResult Function()? onTapIngredient,
+    TResult Function()? onTapProcedure,
     TResult Function(Recipe recipe)? onTapFollow,
     TResult Function(int recipeId)? loadRecipe,
     required TResult orElse(),

@@ -1,5 +1,4 @@
 import 'package:flutter/material.dart';
-import 'package:recipe_flutter/core/presentation/components/rating_button.dart';
 import 'package:recipe_flutter/domain/model/recipe.dart';
 import 'package:recipe_flutter/ui/color_styles.dart';
 import 'package:recipe_flutter/ui/text_styles.dart';

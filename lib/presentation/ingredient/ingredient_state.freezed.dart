@@ -24,6 +24,7 @@ mixin _$IngredientState {
   ChefProfile? get chefProfile => throw _privateConstructorUsedError;
   List<Ingredient> get ingredients => throw _privateConstructorUsedError;
   List<Procedure> get procedures => throw _privateConstructorUsedError;
+  String get selectedTabValue => throw _privateConstructorUsedError;
 
   /// Serializes this IngredientState to a JSON map.
   Map<String, dynamic> toJson() => throw _privateConstructorUsedError;
@@ -45,7 +46,8 @@ abstract class $IngredientStateCopyWith<$Res> {
       {Recipe? recipe,
       ChefProfile? chefProfile,
       List<Ingredient> ingredients,
-      List<Procedure> procedures});
+      List<Procedure> procedures,
+      String selectedTabValue});
 
   $RecipeCopyWith<$Res>? get recipe;
   $ChefProfileCopyWith<$Res>? get chefProfile;
@@ -70,6 +72,7 @@ class _$IngredientStateCopyWithImpl<$Res, $Val extends IngredientState>
     Object? chefProfile = freezed,
     Object? ingredients = null,
     Object? procedures = null,
+    Object? selectedTabValue = null,
   }) {
     return _then(_value.copyWith(
       recipe: freezed == recipe
@@ -88,6 +91,10 @@ class _$IngredientStateCopyWithImpl<$Res, $Val extends IngredientState>
           ? _value.procedures
           : procedures // ignore: cast_nullable_to_non_nullable
               as List<Procedure>,
+      selectedTabValue: null == selectedTabValue
+          ? _value.selectedTabValue
+          : selectedTabValue // ignore: cast_nullable_to_non_nullable
+              as String,
     ) as $Val);
   }
 
@@ -132,7 +139,8 @@ abstract class _$$IngredientStateImplCopyWith<$Res>
       {Recipe? recipe,
       ChefProfile? chefProfile,
       List<Ingredient> ingredients,
-      List<Procedure> procedures});
+      List<Procedure> procedures,
+      String selectedTabValue});
 
   @override
   $RecipeCopyWith<$Res>? get recipe;
@@ -157,6 +165,7 @@ class __$$IngredientStateImplCopyWithImpl<$Res>
     Object? chefProfile = freezed,
     Object? ingredients = null,
     Object? procedures = null,
+    Object? selectedTabValue = null,
   }) {
     return _then(_$IngredientStateImpl(
       recipe: freezed == recipe
@@ -175,6 +184,10 @@ class __$$IngredientStateImplCopyWithImpl<$Res>
           ? _value._procedures
           : procedures // ignore: cast_nullable_to_non_nullable
               as List<Procedure>,
+      selectedTabValue: null == selectedTabValue
+          ? _value.selectedTabValue
+          : selectedTabValue // ignore: cast_nullable_to_non_nullable
+              as String,
     ));
   }
 }
@@ -186,7 +199,8 @@ class _$IngredientStateImpl implements _IngredientState {
       {this.recipe,
       this.chefProfile,
       final List<Ingredient> ingredients = const [],
-      final List<Procedure> procedures = const []})
+      final List<Procedure> procedures = const [],
+      this.selectedTabValue = 'Ingredient'})
       : _ingredients = ingredients,
         _procedures = procedures;
 
@@ -216,8 +230,12 @@ class _$IngredientStateImpl implements _IngredientState {
   }
 
   @override
+  @JsonKey()
+  final String selectedTabValue;
+
+  @override
   String toString() {
-    return 'IngredientState(recipe: $recipe, chefProfile: $chefProfile, ingredients: $ingredients, procedures: $procedures)';
+    return 'IngredientState(recipe: $recipe, chefProfile: $chefProfile, ingredients: $ingredients, procedures: $procedures, selectedTabValue: $selectedTabValue)';
   }
 
   @override
@@ -231,7 +249,9 @@ class _$IngredientStateImpl implements _IngredientState {
             const DeepCollectionEquality()
                 .equals(other._ingredients, _ingredients) &&
             const DeepCollectionEquality()
-                .equals(other._procedures, _procedures));
+                .equals(other._procedures, _procedures) &&
+            (identical(other.selectedTabValue, selectedTabValue) ||
+                other.selectedTabValue == selectedTabValue));
   }
 
   @JsonKey(includeFromJson: false, includeToJson: false)
@@ -241,7 +261,8 @@ class _$IngredientStateImpl implements _IngredientState {
       recipe,
       chefProfile,
       const DeepCollectionEquality().hash(_ingredients),
-      const DeepCollectionEquality().hash(_procedures));
+      const DeepCollectionEquality().hash(_procedures),
+      selectedTabValue);
 
   /// Create a copy of IngredientState
   /// with the given fields replaced by the non-null parameter values.
@@ -265,7 +286,8 @@ abstract class _IngredientState implements IngredientState {
       {final Recipe? recipe,
       final ChefProfile? chefProfile,
       final List<Ingredient> ingredients,
-      final List<Procedure> procedures}) = _$IngredientStateImpl;
+      final List<Procedure> procedures,
+      final String selectedTabValue}) = _$IngredientStateImpl;
 
   factory _IngredientState.fromJson(Map<String, dynamic> json) =
       _$IngredientStateImpl.fromJson;
@@ -278,6 +300,8 @@ abstract class _IngredientState implements IngredientState {
   List<Ingredient> get ingredients;
   @override
   List<Procedure> get procedures;
+  @override
+  String get selectedTabValue;
 
   /// Create a copy of IngredientState
   /// with the given fields replaced by the non-null parameter values.
